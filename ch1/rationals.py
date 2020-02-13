@@ -1,52 +1,55 @@
 #!/usr/bin/env python
 
+from typing import Tuple
 
-def euclid(x, y):
+
+def euclid(x: int, y: int) -> int:
     if x == 0:
-         return y
+        return y
     elif y == 0:
         return x
     else:
-        remain = max(x,y) % min(x,y)
-        return euclid(min(x,y), remain)
+        remain = max(x, y) % min(x, y)
+        return euclid(min(x, y), remain)
 
-def refactor(x, y):
+
+def refactor(x: int, y: int) -> Tuple[int, int]:
     gcd = euclid(x, y)
-    return (x / gcd, y / gcd)
+    return (int(x / gcd), int(y / gcd))
+
     def __repr__(self) -> str:
         return f"{self.numer}/{self.denom}"
 
 
 class Rational:
-
-    def __init__(self, numerator, denominator):
+    def __init__(self, numerator: int, denominator: int):
         self.numer, self.denom = refactor(numerator, denominator)
 
     def __str__(self) -> str:
         return f"{self.numer}/{self.denom}"
 
-    def __add__(self, other: object):
+    def __add__(self, other: object) -> object:
         if not isinstance(other, Rational):
             return NotImplemented
         ret_numer = self.numer * other.denom + self.denom * other.numer
         ret_denom = other.denom * self.denom
         return Rational(ret_numer, ret_denom)
 
-    def __sub__(self, other: object):
+    def __sub__(self, other: object) -> object:
         if not isinstance(other, Rational):
             return NotImplemented
         ret_numer = self.numer * other.denom - self.denom * other.numer
         ret_denom = other.denom * self.denom
         return Rational(ret_numer, ret_denom)
 
-    def __mul__(self, other: object):
+    def __mul__(self, other: object) -> object:
         if not isinstance(other, Rational):
             return NotImplemented
         ret_numer = self.numer * other.numer
         ret_denom = other.denom * self.denom
         return Rational(ret_numer, ret_denom)
 
-    def __truediv__(self, other: object):
+    def __truediv__(self, other: object) -> object:
         if not isinstance(other, Rational):
             return NotImplemented
         ret_numer = self.numer * other.denom
@@ -56,10 +59,15 @@ class Rational:
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Rational):
             return NotImplemented
-        if type(other) is type(self) and self.numer == other.numer and self.denom == other.denom:
+        if (
+            type(other) is type(self)
+            and self.numer == other.numer
+            and self.denom == other.denom
+        ):
             return True
         else:
             return False
+
 
 if __name__ == "__main__":
     print(euclid(270, 192))

@@ -76,6 +76,7 @@ class SmartDate(Date):
 
         return day_of_week
 
+
 def mystery(x: str) -> str:
     n = len(x)
     if n <= 1:
@@ -97,5 +98,3 @@ if __name__ == "__main__":
     smart_date2 = SmartDate(2000, 1, 6)
     assert smart_date1.day_of_the_week() == "Wednesday"
     assert smart_date2.day_of_the_week() == "Thursday"
-
-    euclid(270, 192)

@@ -60,7 +60,7 @@ class SmartDate(Date):
     }
 
     def day_of_the_week(self) -> str:
-        # Get day of week from 2020/1/1
+        # Get day of week from 2000/1/1
 
         digits = int(str(self.year)[-2:])
 
